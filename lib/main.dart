@@ -1,7 +1,7 @@
-import 'package:dicoding_news_app/models/articles_model.dart';
-import 'package:dicoding_news_app/pages/article_webview.dart';
-import 'package:dicoding_news_app/pages/detail_page.dart';
-import 'package:dicoding_news_app/pages/news_list_page.dart';
+import 'package:dicoding_news_app/data/models/article.dart';
+import 'package:dicoding_news_app/ui/article_list_page.dart';
+import 'package:dicoding_news_app/ui/article_webview.dart';
+import 'package:dicoding_news_app/ui/detail_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,13 +16,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromRGBO(103, 58, 183, 1)),
         useMaterial3: true,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: NewsListPage.routeName,
+      initialRoute: ArticleListPage.routeName,
       routes: {
-        NewsListPage.routeName: (context) => const NewsListPage(),
+        ArticleListPage.routeName: (context) => const ArticleListPage(),
         DetailPage.routeName: (context) => DetailPage(
               article: ModalRoute.of(context)?.settings.arguments as Article,
             ),

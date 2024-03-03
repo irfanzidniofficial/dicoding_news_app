@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:dicoding_news_app/pages/article_webview.dart';
+import 'package:dicoding_news_app/ui/article_webview.dart';
 import 'package:flutter/material.dart';
 
-import 'package:dicoding_news_app/models/articles_model.dart';
+import 'package:dicoding_news_app/data/models/article.dart';
 
 class DetailPage extends StatelessWidget {
   static const routeName = '/article_detail';
@@ -18,13 +18,13 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          article.title,
+          article.title ?? '',
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(article.urlToImage),
+            Image.network(article.urlToImage ?? ''),
             Padding(
               padding: const EdgeInsets.all(
                 10,
@@ -33,14 +33,14 @@ class DetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    article.description,
+                    article.description ?? '',
                   ),
                   const Divider(
                     thickness: 1,
                     color: Colors.grey,
                   ),
                   Text(
-                    article.title,
+                    article.title ?? '',
                     style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -55,22 +55,27 @@ class DetailPage extends StatelessWidget {
                   Text("Author: ${article.author}"),
                   const Divider(color: Colors.grey),
                   Text(
-                    article.content,
+                    article.content ?? '',
                     style: const TextStyle(
                       fontSize: 16,
                     ),
                   ),
+                  const Divider(
+                    color: Colors.grey,
+                  ),
+                  Text(
+                    article.content ?? '',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                   const SizedBox(height: 10),
                   ElevatedButton(
-                    child: const Text('Read more'),
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        ArticleWebView.routeName,
-                        arguments: article.url,
-                      );
-                    },
-                  ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, ArticleWebView.routeName,
+                            arguments: article.url);
+                      },
+                      child: const Text(
+                        "Read More",
+                      ))
                 ],
               ),
             ),
