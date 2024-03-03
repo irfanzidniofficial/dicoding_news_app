@@ -1,5 +1,5 @@
 import 'package:dicoding_news_app/data/models/article.dart';
-import 'package:dicoding_news_app/ui/detail_page.dart';
+import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class CardArticle extends StatelessWidget {
@@ -28,7 +28,7 @@ class CardArticle extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            DetailPage.routeName,
+            ArticleDetailPage.routeName,
             arguments: article,
           );
         },

@@ -1,7 +1,7 @@
 import 'package:dicoding_news_app/data/models/article.dart';
-import 'package:dicoding_news_app/ui/article_list_page.dart';
 import 'package:dicoding_news_app/ui/article_webview.dart';
-import 'package:dicoding_news_app/ui/detail_page.dart';
+import 'package:dicoding_news_app/ui/article_detail_page.dart';
+import 'package:dicoding_news_app/ui/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -21,10 +21,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: ArticleListPage.routeName,
+      initialRoute: HomePage.routeName,
       routes: {
-        ArticleListPage.routeName: (context) => const ArticleListPage(),
-        DetailPage.routeName: (context) => DetailPage(
+        HomePage.routeName: (context) => const HomePage(),
+        ArticleDetailPage.routeName: (context) => ArticleDetailPage(
               article: ModalRoute.of(context)?.settings.arguments as Article,
             ),
         ArticleWebView.routeName: (context) => ArticleWebView(

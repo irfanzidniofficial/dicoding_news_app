@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 
 import 'package:dicoding_news_app/data/models/article.dart';
 
-class DetailPage extends StatelessWidget {
+class ArticleDetailPage extends StatelessWidget {
   static const routeName = '/article_detail';
 
   final Article article;
-  const DetailPage({
+  const ArticleDetailPage({
     Key? key,
     required this.article,
   }) : super(key: key);
