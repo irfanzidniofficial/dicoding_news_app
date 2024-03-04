@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:dicoding_news_app/common/navigation.dart';
 import 'package:dicoding_news_app/ui/article_webview.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class ArticleDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          article.title ?? '',
+          article.title,
         ),
       ),
       body: SingleChildScrollView(
@@ -40,7 +41,7 @@ class ArticleDetailPage extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   Text(
-                    article.title ?? '',
+                    article.title,
                     style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -70,8 +71,8 @@ class ArticleDetailPage extends StatelessWidget {
                   const SizedBox(height: 10),
                   ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, ArticleWebView.routeName,
-                            arguments: article.url);
+                        Navigation.intentWithData(
+                            ArticleWebView.routeName, article.url);
                       },
                       child: const Text(
                         "Read More",

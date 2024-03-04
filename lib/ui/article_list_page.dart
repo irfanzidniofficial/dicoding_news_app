@@ -5,8 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
-
 class ArticleListPage extends StatelessWidget {
   const ArticleListPage({Key? key}) : super(key: key);
 
@@ -18,9 +16,9 @@ class ArticleListPage extends StatelessWidget {
         );
       } else if (state.state == ResultState.hasData) {
         return ListView.builder(
-          itemCount: state.result.articles?.length,
+          itemCount: state.result.articles.length,
           itemBuilder: (context, index) {
-            var article = state.result.articles![index];
+            var article = state.result.articles[index];
             return CardArticle(
               article: article,
             );

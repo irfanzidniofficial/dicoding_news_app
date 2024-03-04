@@ -2,15 +2,16 @@ import 'dart:io';
 import 'package:dicoding_news_app/common/styles.dart';
 import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
+import 'package:dicoding_news_app/provider/scheduling_provider.dart';
+import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:dicoding_news_app/ui/article_list_page.dart';
 import 'package:dicoding_news_app/ui/settings_page.dart';
+
+import 'package:dicoding_news_app/utils/notification_helper.dart';
 import 'package:dicoding_news_app/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-
-
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home_page';
@@ -25,14 +26,31 @@ class _HomePageState extends State<HomePage> {
   int _bottomNavIndex = 0;
   static const String _headlineText = 'Headline';
 
+  final NotificationHelper _notificationHelper = NotificationHelper();
+
   final List<Widget> _listWidget = [
     ChangeNotifierProvider<NewsProvider>(
       create: (_) => NewsProvider(apiService: ApiService()),
       child: const ArticleListPage(),
     ),
-   
-    const SettingsPage(),
+    ChangeNotifierProvider<SchedulingProvider>(
+      create: (_) => SchedulingProvider(),
+      child: const SettingsPage(),
+    ),
   ];
+
+  @override
+  void initState() {
+    _notificationHelper
+        .configureSelectNotificationSubject(ArticleDetailPage.routeName);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    selectNotificationSubject.close();
+    super.dispose();
+  }
 
   final List<BottomNavigationBarItem> _bottomNavBarItems = [
     BottomNavigationBarItem(

@@ -1,3 +1,4 @@
+import 'package:dicoding_news_app/common/navigation.dart';
 import 'package:dicoding_news_app/data/models/article.dart';
 import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:flutter/material.dart';
@@ -21,17 +22,11 @@ class CardArticle extends StatelessWidget {
             width: 100,
           ),
         ),
-        title: Text(article.title ?? ''),
+        title: Text(article.title),
         subtitle: Text(
           article.author ?? '',
         ),
-        onTap: () {
-          Navigator.pushNamed(
-            context,
-            ArticleDetailPage.routeName,
-            arguments: article,
-          );
-        },
+         onTap: () => Navigation.intentWithData(ArticleDetailPage.routeName, article),
       ),
     );
   }

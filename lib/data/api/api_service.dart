@@ -1,9 +1,7 @@
+import 'dart:convert';
+
 import 'package:dicoding_news_app/data/models/article.dart';
 import 'package:http/http.dart' as http;
-
-
-
-
 
 class ApiService {
   static const String _baseUrl = 'https://newsapi.org/v2/';
@@ -18,7 +16,7 @@ class ApiService {
       ),
     );
     if (response.statusCode == 200) {
-      return ArticlesResult.fromJson(response.body);
+      return ArticlesResult.fromJson(jsonDecode(response.body));
     } else {
       throw Exception("Failed to load headlines");
     }

@@ -26,7 +26,7 @@ class NewsProvider extends ChangeNotifier {
       _state = ResultState.loading;
       notifyListeners();
       final article = await apiService.topHeadlines();
-      if (article.articles!.isEmpty) {
+      if (article.articles.isEmpty) {
         _state = ResultState.noData;
         notifyListeners();
         return _message = 'Empty Data';
