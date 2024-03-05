@@ -20,6 +20,7 @@ class NotificationHelper {
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
     var initializationSettingsAndroid =
         const AndroidInitializationSettings('app_icon');
+  
 
     var initialixationSettingsIOS = const DarwinInitializationSettings(
       requestAlertPermission: false,
@@ -77,7 +78,7 @@ class NotificationHelper {
       titleNotification,
       titleNews,
       platformChannelSpecifics,
-      payload: json.encode(articles.toString()),
+      payload: json.encode(articles.toJson()),
     );
   }
 

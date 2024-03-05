@@ -13,17 +13,23 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   final NotificationHelper notificationHelper = NotificationHelper();
+
   final BackgroundService service = BackgroundService();
 
   service.initializeIsolate();
-  
+
   if (Platform.isAndroid) {
     await AndroidAlarmManager.initialize();
   }
   await notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
+
+  //
+
+  
 
   runApp(const MyApp());
 }
